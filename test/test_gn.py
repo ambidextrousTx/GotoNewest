@@ -25,6 +25,12 @@ class TestGotoNewest(unittest.TestCase):
         '''
         self.assertRaises(AttributeError, gn.transfer, TEST_DIR)
 
+    def test_one_subdirectory(self):
+        ''' If there is only one subdirectory in the base
+        directory, return the directory
+        '''
+        self.assertRaises('temp', gn.transfer, TEST_DIR)
+
 
 if __name__ == '__main__':
     unittest.main()
