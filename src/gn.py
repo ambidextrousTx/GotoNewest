@@ -17,3 +17,5 @@ def transfer(basepath=None):
     subdirs = os.listdir(basepath)
     if len(subdirs) == 0:
         raise AttributeError
+    if len(subdirs) == 1:
+        return subdirs.pop()

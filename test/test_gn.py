@@ -7,7 +7,8 @@ import sys
 sys.path.append('../src/')
 import gn
 
-TEST_DIR = '/tmp/test'
+TEST_DIR_NO_SUB = '/tmp/testnosub'
+TEST_DIR_ONE_SUB = '/tmp/testonesub'
 
 class TestGotoNewest(unittest.TestCase):
     ''' Test class for GotoNewest
@@ -23,13 +24,13 @@ class TestGotoNewest(unittest.TestCase):
         ''' If the base directory has no subdirectories,
         raise an AttributeError
         '''
-        self.assertRaises(AttributeError, gn.transfer, TEST_DIR)
+        self.assertRaises(AttributeError, gn.transfer, TEST_DIR_NO_SUB)
 
     def test_one_subdirectory(self):
         ''' If there is only one subdirectory in the base
         directory, return the directory
         '''
-        self.assertRaises('temp', gn.transfer, TEST_DIR)
+        self.assertEquals('temp', gn.transfer(TEST_DIR_ONE_SUB))
 
 
 if __name__ == '__main__':
