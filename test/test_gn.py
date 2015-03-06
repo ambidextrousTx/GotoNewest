@@ -9,6 +9,7 @@ import gn
 
 TEST_DIR_NO_SUB = '/tmp/testnosub'
 TEST_DIR_ONE_SUB = '/tmp/testonesub'
+TEST_DIR_TWO_SUB = '/tmp/testtwosub'
 
 class TestGotoNewest(unittest.TestCase):
     ''' Test class for GotoNewest
@@ -31,6 +32,13 @@ class TestGotoNewest(unittest.TestCase):
         directory, return the directory
         '''
         self.assertEquals('temp', gn.transfer(TEST_DIR_ONE_SUB))
+
+    def test_multiple_subdirectories(self):
+        ''' If there are multiple subdirectories in the base
+        directory, find the one created most recently and
+        return it
+        '''
+        self.assertEquals('temp2', gn.transfer(TEST_DIR_TWO_SUB))
 
 
 if __name__ == '__main__':
