@@ -19,3 +19,21 @@ def transfer(basepath=None):
         raise AttributeError
     if len(subdirs) == 1:
         return subdirs.pop()
+    latest_subdir = get_latest_modified_subdir(basepath)
+    return latest_subdir
+
+def get_latest_modified_subdir(basepath):
+    ''' Iterate through all the subdirectories in a given path
+    and return the one with the latest modified time
+    '''
+    # TODO: There has to be a better way of doing this
+    all_subdirs = os.listdir(basepath)
+    latest = os.path.getmtime(basepath + '/' + all_subdirs[0])
+    latest_subdir = all_subdirs[0]
+    for subdir in all_subdirs:
+        mtime = os.path.getmtime(basepath + '/' + subdir)
+        if mtime > latest:
+            latest = mtime
+            latest_subdir = subdir
+
+    return latest_subdir
