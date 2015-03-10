@@ -6,10 +6,12 @@ import unittest
 import sys
 sys.path.append('../src/')
 import gn
+import os
 
 TEST_DIR_NO_SUB = '/tmp/testnosub'
 TEST_DIR_ONE_SUB = '/tmp/testonesub'
 TEST_DIR_TWO_SUB = '/tmp/testtwosub'
+CONFIG_FILE = '../config/gn.cnf'
 
 class TestGotoNewest(unittest.TestCase):
     ''' Test class for GotoNewest
@@ -39,6 +41,21 @@ class TestGotoNewest(unittest.TestCase):
         return it
         '''
         self.assertEquals('temp2', gn.transfer(TEST_DIR_TWO_SUB))
+
+    def test_multiple_sub_with_config(self):
+        ''' The same as the test for multiple subdirectories,
+        but read the path from the gn.conf file
+        '''
+        with open(CONFIG_FILE, 'r') as fhi:
+            for line in fhi:
+                if line.startswith('#'):
+                    pass
+                else:
+                    info = line.strip().split('=')
+                    if info[0] == 'basepath':
+                        basepath = info[1]
+
+        self.assertEquals('temp2', gn.transfer(basepath))
 
 
 if __name__ == '__main__':
