@@ -7,6 +7,8 @@ the base directory is supplied as an argument
 '''
 
 import os
+import sys
+import gn_helper
 
 def transfer(basepath=None):
     ''' Transfer to the newest directory in the basepath
@@ -37,3 +39,17 @@ def get_latest_modified_subdir(basepath):
             latest_subdir = subdir
 
     return latest_subdir
+
+def main():
+    ''' Get the latest directory created in the directory
+    set as basepath in the config file, and then cd into it
+    '''
+    basepath = gn_helper.get_basepath()
+    if basepath is not None:
+        os.chdir(basepath)
+        print 'Testing: in', os.getcwd()
+    else:
+        print 'Sorry, the basepath is not valid'
+
+if __name__ == '__main__':
+    main()
