@@ -1,16 +1,17 @@
 #GotoNewest
 
-A small tool to directly change directory into the newest
-directory created in any base directory. It reads the base
-directory from a configuration file.
+A small tool to obtain the newest directory created in any base directory. It
+reads the base directory from a configuration file, and returns the latest
+subdirectory based on modified time in that directory.
 
-To run, just fill out the config file that contains the base
-(parent) directory, and then run
+Originally the intention was to to run this as a standalone tool. However,
+Python does not allow permanent directory switching (it reverts back to the
+original directory as soon as the program exits). That is not a workable
+solution.
 
-**$ gn**
+Alternative: This gist here:
 
-Of course, you need to make the _gn_ script executable and put
-it in your path.
+*https://gist.github.com/ambidextrousTx/af77f6819d066ab2d510*
 
 ~Ambidextrous
 Feb, 2015
